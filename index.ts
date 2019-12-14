@@ -178,3 +178,25 @@ class UpDownBouncyRect {
         this.curr.startUpdating(cb)
     }
 }
+
+class Renderer {
+
+    udbr : UpDownBouncyRect = new UpDownBouncyRect()
+    animator : Animator = new Animator()
+
+    render(context : CanvasRenderingContext2D) {
+        this.udbr.draw(context)
+    }
+
+    handleTap(cb : Function) {
+        this.udbr.startUpdating(() => {
+            this.animator.start(() => {
+                cb()
+                this.udbr.update(() => {
+                    this.animator.stop()
+                    cb()
+                })
+            })
+        })
+    }
+}
