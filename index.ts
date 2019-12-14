@@ -30,7 +30,7 @@ class DrawingUtil {
         const size : number = gap / sizeFactor
         context.fillStyle = foreColor
         context.save()
-        context.translate(gap * (i + 1), h / 2)
+        context.translate(gap * i + gap / 2, h / 2)
         DrawingUtil.drawBouncyRect(context, scale, size, gap)
         context.restore()
     }
